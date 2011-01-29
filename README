@@ -1,0 +1,39 @@
+XMLTagInputManager: Copyright © 2005-2006 A.H.A. Brouwer, All rights reserved.
+
+This work is licensed under the Creative Commons Attribution-ShareAlike License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/1.0/ 
+or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+
+
+    What does it do?
+
+This input manager is convenient if you want to double or triple click to select xml (or xhtml) tags. Put the mouse cursor on the opening '<' or closing '>' character of a tag and:
+ * a double click will select the complete tag
+ * a triple click will select the complete open and close tag (or beep at you and select as far as it can get if you have malformed xml).
+
+It will work with any program that is based on the Cocoa frameworks.
+
+
+    Where do I put it?
+
+You can make it available to yourself by dropping the "XMLTagInputManager" folder in your "~/Library/InputManagers". Or make it available to everybody on your machine in "/Library/InputManagers".
+(Create the "InputManagers" folder if it's not already there.)
+
+
+	Problems?
+
+I haven't found any yet, but you can always contact me if you find a problem (besides a detailed error description, send the file that causes a problem too if that is possible).
+Other things you have to be careful of:
+ * If you use TextExtras, make sure you don't use '<' and '>' as opening and closing braces for "Select to Matching Brace" or "Show to Matching Brace". Here's what you can do, execute the following in a terminal:
+ 	defaults write NSGlobalDomain TEOpeningBracesCharacters -string '{[('
+	defaults write NSGlobalDomain TEClosingBracesCharacters -string '}])'
+ * If you have a construction like:
+ 	<p><h3>Technical Support:</h3>
+   And you click the the closing character of the "<p>" tag, the "<h3>" tag will be selected. This is a decision I had to make because at that point I do not have enough information to determine that you clicked inside the "<p>" tag and I had to choose what to do. I chose the situation that will allow you to select a tag using my code. If you would have double clicked the '<' of the "<p>" tag, it would select that tag.
+
+
+	Acknowledgements
+
+The idea of this input manager came from a similar bundle that was available for OpenStep but I couldn't find an implementation for Mac OS X. I can't remember who wrote it but I missed it a lot!
+
+I would like to thank Mike Ferris for making the source code available to TextExtras! I learned a lot from his code in order to implement this bundle. Kudos as well to Michael McCracken for his IncrementalSearchInputManager code, I took a good look at that as well. Both bundles I can't live without anymore...
